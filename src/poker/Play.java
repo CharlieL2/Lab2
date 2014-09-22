@@ -1,22 +1,39 @@
 package poker;
 
 public class Play {
-	public static void main() {
+	public static void main(String[] args) {
 		// Initialization
 		Deck playDeck = new Deck();
+		playDeck.shuffle();
 
-		Hand playerHand = new Hand(playDeck);
+		Hand playerHand = new Hand();
+		playerHand.drawNewHand(playDeck);
 
-		Hand computerHand = new Hand(playDeck);
+		Hand computerHand = new Hand();
+		computerHand.drawNewHand(playDeck);
 
 		// Playing the game
-		int playerScore = playerHand.evaluate();
-		int computerScore = computerHand.evaluate();
-		if (playerScore > computerScore)
-			System.out.println("Win");
-		else if (playerScore == computerScore)
-			System.out.println("Draw");
-		else
-			System.out.println("Lose");
+		playerHand.evaluate();
+		int[] playerScore = playerHand.getEvaluation();
+
+		computerHand.evaluate();
+		int[] computerScore = computerHand.getEvaluation();
+
+		int[] genList = { 0, 1, 2, 3 };
+		for (int num : genList) {
+			if (playerScore[num] > computerScore[num]) {
+				System.out.println("Win");
+				break;
+			} else if (playerScore[num] < computerScore[num]) {
+				System.out.println("Lose");
+				break;
+			}
+			else if (num == 3){
+				System.out.println("Draw");
+				break;
+			}
+		}
+		System.out.println(playerScore[0]+ " " +playerScore[1]+ " " +playerScore[2]+ " " +playerScore[3]);
+		System.out.println(computerScore[0] + " " + computerScore[1] + " " + computerScore[2] + " " + computerScore[3]);
 	}
 }
