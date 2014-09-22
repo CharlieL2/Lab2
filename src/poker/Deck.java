@@ -30,4 +30,9 @@ public class Deck{
 		deck.remove(0);
 		return firstCard;
 	}
+	
+	//cardsLeft method
+	public int cardsLeft(){
+		return deck.size();
+	}
 }
