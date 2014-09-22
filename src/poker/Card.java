@@ -14,11 +14,11 @@ public class Card {
 	}
 	
 	//get methods
-	public int getValue(){
+	protected int getValue(){
 		return value;
 	}
 	
-	public int getSuit(){
+	protected int getSuit(){
 		return suit;
 	}
 }
